@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhaba – Banani Branch | Authentic Flavours of Bangladesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C0151A;
+    --red-dark: #7A0A0D;
+    --red-deep: #3D0608;
+    --red-light: #E83030;
+    --cream: #FDF6ED;
+    --warm: #F5E6CC;
+    --gold: #D4A024;
+    --gold-light: #F2C84B;
+    --text: #1A0505;
+    --muted: rgba(253,246,237,0.6);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--red-deep);
+    color: var(--cream);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Texture overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C0151A' fill-opacity='0.07'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    padding: 18px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(180deg, rgba(61,6,8,0.97) 0%, transparent 100%);
+    backdrop-filter: blur(6px);
+  }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo-circle {
+    width: 42px; height: 42px;
+    background: var(--red);
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; color: #fff;
+    letter-spacing: 1px;
+  }
+  .nav-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 4px;
+    color: #fff;
+  }
+  .nav-name span { color: var(--gold-light); }
+
+  .nav-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(253,246,237,0.7); text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-cta {
+    background: var(--red);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    padding: 11px 24px; border-radius: 3px; text-decoration: none;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--red-light); transform: translateY(-1px); }
+
+  @media (max-width: 700px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 20px 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 0%, rgba(192,21,26,0.55) 0%, transparent 65%),
+      linear-gradient(180deg, rgba(61,6,8,0.7) 0%, rgba(61,6,8,0.85) 60%, rgba(61,6,8,0.98) 100%);
+    z-index: 0;
+  }
+
+  /* Big bold circle accent */
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(192,21,26,0.2);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; z-index: 0;
+    box-shadow: 0 0 120px rgba(192,21,26,0.15) inset;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 860px; text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(192,21,26,0.3);
+    border: 1px solid rgba(212,160,36,0.5);
+    padding: 8px 22px; border-radius: 40px;
+    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 32px;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(70px, 14vw, 140px);
+    letter-spacing: 8px;
+    color: #fff;
+    line-height: 0.9;
+    margin-bottom: 16px;
+    animation: fadeDown 0.8s ease 0.1s both;
+    text-shadow: 0 4px 40px rgba(192,21,26,0.6);
+  }
+  .hero-title .accent { color: var(--red-light); }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 26px);
+    font-style: italic; font-weight: 400;
+    color: var(--warm); opacity: 0.85;
+    margin-bottom: 44px;
+    animation: fadeDown 0.8s ease 0.2s both;
+    letter-spacing: 1px;
+  }
+
+  .hero-divider {
+    display: flex; align-items: center; gap: 14px; justify-content: center;
+    margin-bottom: 48px;
+    animation: fadeDown 0.8s ease 0.3s both;
+  }
+  .hero-divider-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .hero-divider-line.r { background: linear-gradient(90deg, var(--gold), transparent); }
+  .hero-divider-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; }
+
+  .hero-pills {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 52px;
+    animation: fadeUp 0.9s ease 0.4s both;
+  }
+  .hero-pill {
+    background: rgba(192,21,26,0.25);
+    border: 1px solid rgba(192,21,26,0.5);
+    padding: 8px 18px; border-radius: 40px;
+    font-size: 12px; color: var(--warm);
+    letter-spacing: 1px;
+  }
+
+  .hero-btns {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 0.9s ease 0.5s both;
+  }
+
+  .btn-main {
+    background: var(--red);
+    color: #fff; font-weight: 700;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    padding: 16px 42px; border-radius: 3px;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: all 0.3s; display: inline-block;
+    box-shadow: 0 4px 24px rgba(192,21,26,0.5);
+  }
+  .btn-main:hover { background: var(--red-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(192,21,26,0.6); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--cream); font-weight: 600;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    padding: 15px 42px; border-radius: 3px;
+    border: 1px solid rgba(253,246,237,0.3); cursor: pointer; text-decoration: none;
+    transition: all 0.3s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(253,246,237,0.7); background: rgba(253,246,237,0.05); }
+
+  /* ── SPECIALTIES ── */
+  .spec-section {
+    position: relative; z-index: 1;
+    padding: 100px 20px;
+    background: linear-gradient(180deg, var(--red-deep) 0%, rgba(122,10,13,0.4) 50%, var(--red-deep) 100%);
+  }
+
+  .sec-tag {
+    text-align: center; font-size: 10px; letter-spacing: 6px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+  }
+  .sec-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 700; color: var(--cream);
+    line-height: 1.1; margin-bottom: 60px;
+  }
+  .sec-title em { color: var(--red-light); font-style: italic; }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px; max-width: 1100px; margin: 0 auto;
+  }
+
+  .spec-card {
+    background: linear-gradient(145deg, rgba(192,21,26,0.2), rgba(61,6,8,0.8));
+    border: 1px solid rgba(192,21,26,0.35);
+    border-radius: 10px; padding: 36px 20px; text-align: center;
+    transition: all 0.4s; position: relative; overflow: hidden;
+    cursor: default;
+  }
+  .spec-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .spec-card:hover { transform: translateY(-8px); border-color: rgba(192,21,26,0.7); box-shadow: 0 16px 40px rgba(192,21,26,0.25); }
+  .spec-card:hover::after { opacity: 1; }
+
+  .spec-icon { font-size: 42px; margin-bottom: 18px; display: block; }
+  .spec-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700; color: var(--warm); margin-bottom: 8px;
+  }
+  .spec-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+  /* ── PLATTER HIGHLIGHT ── */
+  .platter-section {
+    position: relative; z-index: 1;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, rgba(122,10,13,0.7), rgba(61,6,8,0.95));
+    overflow: hidden;
+  }
+  .platter-section::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(192,21,26,0.2) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+
+  .platter-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+  }
+  @media (max-width: 700px) { .platter-inner { grid-template-columns: 1fr; } }
+
+  .platter-visual {
+    position: relative;
+  }
+  .platter-ring {
+    width: 100%; aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid rgba(192,21,26,0.5);
+    background: radial-gradient(circle at 40% 40%, rgba(192,21,26,0.3), rgba(61,6,8,0.9));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 0 80px rgba(192,21,26,0.3), inset 0 0 60px rgba(192,21,26,0.1);
+  }
+  .platter-ring::before {
+    content: '';
+    position: absolute; inset: 12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(212,160,36,0.3);
+  }
+  .platter-tag {
+    position: absolute; bottom: 10px; right: 10px;
+    background: var(--red);
+    color: #fff; font-weight: 700; font-size: 12px;
+    letter-spacing: 1px; padding: 10px 16px; border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  .platter-content .sec-title { text-align: left; margin-bottom: 16px; }
+  .platter-content .sec-tag { text-align: left; }
+
+  .platter-desc {
+    font-size: 15px; color: var(--muted); line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  .platter-items {
+    list-style: none; margin-bottom: 32px;
+  }
+  .platter-items li {
+    padding: 10px 0; border-bottom: 1px solid rgba(192,21,26,0.2);
+    font-size: 14px; color: rgba(253,246,237,0.85);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .platter-items li::before { content: '◆'; color: var(--red); font-size: 8px; flex-shrink: 0; }
+
+  /* ── BRANCHES ── */
+  .branches-section {
+    position: relative; z-index: 1;
+    padding: 100px 20px;
+    background: var(--red-deep);
+  }
+
+  .branches-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px; max-width: 1000px; margin: 60px auto 0;
+  }
+
+  .branch-card {
+    background: linear-gradient(145deg, rgba(192,21,26,0.15), rgba(61,6,8,0.8));
+    border: 1px solid rgba(192,21,26,0.3);
+    border-radius: 10px; padding: 36px 28px;
+    transition: all 0.4s; position: relative; overflow: hidden;
+  }
+  .branch-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--red-dark), var(--red-light));
+  }
+  .branch-card:hover { border-color: rgba(192,21,26,0.6); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(192,21,26,0.2); }
+
+  .branch-city {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px; letter-spacing: 4px; color: var(--red-light); margin-bottom: 6px;
+  }
+  .branch-name {
+    font-size: 13px; font-weight: 700; color: var(--warm); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 20px;
+  }
+  .branch-detail {
+    font-size: 13px; color: var(--muted); line-height: 2; margin-bottom: 4px;
+  }
+  .branch-detail strong { color: var(--cream); }
+
+  .branch-cta {
+    display: inline-block; margin-top: 20px;
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(212,160,36,0.4);
+    padding-bottom: 2px; transition: all 0.3s;
+  }
+  .branch-cta:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ── CATERING BAND ── */
+  .catering-band {
+    position: relative; z-index: 1;
+    background: linear-gradient(135deg, var(--red-dark), #9B1015);
+    padding: 80px 20px; text-align: center;
+  }
+  .catering-band::before, .catering-band::after {
+    content: '';
+    position: absolute; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,160,36,0.5), transparent);
+  }
+  .catering-band::before { top: 0; }
+  .catering-band::after { bottom: 0; }
+
+  .catering-icons {
+    display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
+    margin: 28px 0 40px;
+  }
+  .catering-icon-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.15);
+    padding: 10px 20px; border-radius: 40px;
+    font-size: 13px; color: var(--warm);
+  }
+
+  /* ── RESERVE ── */
+  .reserve-section {
+    position: relative; z-index: 1;
+    padding: 100px 20px; text-align: center;
+    background: linear-gradient(180deg, var(--red-deep) 0%, rgba(122,10,13,0.5) 50%, var(--red-deep) 100%);
+  }
+
+  .form-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px; max-width: 760px; margin: 50px auto 24px;
+  }
+  .fgroup { display: flex; flex-direction: column; gap: 7px; }
+  .fgroup label {
+    font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); text-align: left;
+  }
+  .fgroup input, .fgroup select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(192,21,26,0.4);
+    border-radius: 4px; padding: 14px 16px;
+    color: var(--cream); font-family: 'Nunito', sans-serif; font-size: 14px;
+    outline: none; transition: border-color 0.3s; -webkit-appearance: none;
+  }
+  .fgroup input::placeholder { color: rgba(253,246,237,0.3); }
+  .fgroup input:focus, .fgroup select:focus { border-color: var(--red-light); }
+  .fgroup select option { background: var(--red-deep); }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    background: rgba(0,0,0,0.7);
+    padding: 48px 20px 28px;
+    text-align: center;
+    border-top: 1px solid rgba(192,21,26,0.3);
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px; letter-spacing: 8px; color: var(--red-light);
+    margin-bottom: 4px;
+  }
+  .footer-sub {
+    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    color: rgba(253,246,237,0.35); margin-bottom: 28px;
+  }
+  .footer-links {
+    display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px;
+  }
+  .footer-links a {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(253,246,237,0.45); text-decoration: none; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-copy { font-size: 11px; color: rgba(253,246,237,0.2); }
+
+  /* ── ANIMS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="nav-logo-circle">D</div>
+    <div>
+      <div class="nav-name">DHABA <span>™</span></div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#specials">Menu</a></li>
+    <li><a href="#platter">Platters</a></li>
+    <li><a href="#branches">Branches</a></li>
+    <li><a href="#reserve">Reserve</a></li>
+  </ul>
+  <a class="nav-cta" href="#reserve">Order Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">✦ Banani Branch · Dhaka ✦</div>
+
+    <div class="hero-title">
+      DHABA<span class="accent">™</span>
+    </div>
+
+    <p class="hero-subtitle">Authentic Flavours. Every Bite, A Celebration.</p>
+
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-dot"></div>
+      <div class="hero-divider-line r"></div>
+    </div>
+
+    <div class="hero-pills">
+      <span class="hero-pill">🎉 Corporate Events</span>
+      <span class="hero-pill">💍 Weddings</span>
+      <span class="hero-pill">🎂 Birthday Parties</span>
+      <span class="hero-pill">🍽️ Home Catering</span>
+    </div>
+
+    <div class="hero-btns">
+      <a class="btn-main" href="#reserve">Reserve a Table</a>
+      <a class="btn-ghost" href="#specials">View Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALTIES -->
+<section class="spec-section" id="specials">
+  <div class="sec-tag reveal">✦ Our Signatures ✦</div>
+  <h2 class="sec-title reveal">What Makes <em>Dhaba</em> Special</h2>
+
+  <div class="spec-grid">
+    <div class="spec-card reveal">
+      <span class="spec-icon">🍢</span>
+      <div class="spec-name">Grilled Skewers</div>
+      <div class="spec-desc">Smoky, charred skewers marinated in aromatic spice blends</div>
+    </div>
+    <div class="spec-card reveal reveal-delay-1">
+      <span class="spec-icon">🥟</span>
+      <div class="spec-name">Crispy Samosas</div>
+      <div class="spec-desc">Golden, flaky pastry filled with spiced meat & vegetables</div>
+    </div>
+    <div class="spec-card reveal reveal-delay-2">
+      <span class="spec-icon">🍗</span>
+      <div class="spec-name">Fried Chicken Bites</div>
+      <div class="spec-desc">Crunchy, juicy morsels in Dhaba's secret seasoning</div>
+    </div>
+    <div class="spec-card reveal reveal-delay-3">
+      <span class="spec-icon">🫓</span>
+      <div class="spec-name">Stuffed Paratha</div>
+      <div class="spec-desc">Soft, layered flatbread filled with spiced minced meat</div>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🍱</span>
+      <div class="spec-name">Party Platters</div>
+      <div class="spec-desc">Grand sharing platters curated for events & gatherings</div>
+    </div>
+    <div class="spec-card reveal reveal-delay-1">
+      <span class="spec-icon">🧆</span>
+      <div class="spec-name">Croquettes & Bites</div>
+      <div class="spec-desc">Crisp-fried stuffed bites, perfect for snacking</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATTER FEATURE -->
+<section class="platter-section" id="platter">
+  <div class="platter-inner">
+    <div class="platter-visual reveal">
+      <div class="platter-ring">🍽️</div>
+      <div class="platter-tag">🔥 BESTSELLER</div>
+    </div>
+    <div class="platter-content reveal">
+      <div class="sec-tag" style="text-align:left;">✦ Signature Offering ✦</div>
+      <h2 class="sec-title" style="text-align:left; margin-bottom:16px;">The <em>Dhaba</em><br>Grand Platter</h2>
+      <p class="platter-desc">
+        A lavish circular feast — Dhaba's most iconic offering, loaded with an assortment of grills, fried snacks, and traditional bites. Perfect for groups, events, and celebrations.
+      </p>
+      <ul class="platter-items">
+        <li>Mixed skewers & BBQ items</li>
+        <li>Crispy samosas & croquettes</li>
+        <li>Fried chicken bites</li>
+        <li>Stuffed paratha wedges</li>
+        <li>Dipping sauces & chutneys</li>
+      </ul>
+      <a href="#reserve" class="btn-main">Order a Platter</a>
+    </div>
+  </div>
+</section>
+
+<!-- CATERING BAND -->
+<section class="catering-band">
+  <div class="sec-tag reveal">✦ Beyond the Restaurant ✦</div>
+  <h2 class="sec-title reveal" style="max-width:600px; margin:0 auto 12px;">Catering for <em>Every</em> Occasion</h2>
+  <p class="reveal" style="font-size:15px; color:var(--muted); max-width:500px; margin:0 auto;">
+    From intimate family dinners to grand wedding feasts — Dhaba brings authentic flavours directly to your venue.
+  </p>
+  <div class="catering-icons reveal">
+    <div class="catering-icon-pill">💍 Weddings</div>
+    <div class="catering-icon-pill">🏢 Corporate</div>
+    <div class="catering-icon-pill">🎂 Birthdays</div>
+    <div class="catering-icon-pill">🎊 Any Occasion</div>
+  </div>
+  <a href="tel:+8801700000000" class="btn-main reveal">Call to Enquire</a>
+</section>
+
+<!-- BRANCHES -->
+<section class="branches-section" id="branches">
+  <div class="sec-tag reveal">✦ Find Us ✦</div>
+  <h2 class="sec-title reveal">Our <em>Branches</em></h2>
+
+  <div class="branches-grid">
+    <div class="branch-card reveal">
+      <div class="branch-city">BANANI</div>
+      <div class="branch-name">Banani Branch</div>
+      <div class="branch-detail"><strong>Address:</strong> Building # 5, Road 13C, Block – E, Banani, Dhaka</div>
+      <div class="branch-detail"><strong>Phone:</strong> +88 01717-712281</div>
+      <div class="branch-detail"><strong>Hotline:</strong> +88 01970-212881</div>
+      <a href="tel:+8801717712281" class="branch-cta">Call Now →</a>
+    </div>
+
+    <div class="branch-card reveal reveal-delay-1">
+      <div class="branch-city">DHANMONDI</div>
+      <div class="branch-name">Dhanmondi Branch</div>
+      <div class="branch-detail"><strong>Address:</strong> House # 34, Road # 08A, Dhanmondi, Dhaka</div>
+      <div class="branch-detail"><strong>Phone:</strong> +88 01732-701571</div>
+      <div class="branch-detail"><strong>Hotline:</strong> +88 01885-701571</div>
+      <a href="tel:+8801732701571" class="branch-cta">Call Now →</a>
+    </div>
+
+    <div class="branch-card reveal reveal-delay-2">
+      <div class="branch-city">CHATTOGRAM</div>
+      <div class="branch-name">Chattogram Branch</div>
+      <div class="branch-detail"><strong>Address:</strong> Shop # 63, Road # 7, Nasirabad, Chattogram</div>
+      <div class="branch-detail"><strong>Phone:</strong> +88 01872-313177</div>
+      <div class="branch-detail"><strong>Hotline:</strong> +88 01872-313177</div>
+      <a href="tel:+8801872313177" class="branch-cta">Call Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section class="reserve-section" id="reserve">
+  <div class="sec-tag reveal">✦ We'd Love to Host You ✦</div>
+  <h2 class="sec-title reveal">Make a <em>Reservation</em></h2>
+
+  <div class="form-grid">
+    <div class="fgroup reveal">
+      <label>Your Name</label>
+      <input type="text" placeholder="Full name">
+    </div>
+    <div class="fgroup reveal">
+      <label>Phone Number</label>
+      <input type="tel" placeholder="+880 1XXX XXXXXX">
+    </div>
+    <div class="fgroup reveal">
+      <label>Select Branch</label>
+      <select>
+        <option>Banani Branch</option>
+        <option>Dhanmondi Branch</option>
+        <option>Chattogram Branch</option>
+      </select>
+    </div>
+    <div class="fgroup reveal">
+      <label>Occasion</label>
+      <select>
+        <option>Dine-In</option>
+        <option>Corporate Event</option>
+        <option>Wedding Catering</option>
+        <option>Birthday Party</option>
+        <option>Home Delivery</option>
+      </select>
+    </div>
+    <div class="fgroup reveal">
+      <label>Date</label>
+      <input type="date">
+    </div>
+    <div class="fgroup reveal">
+      <label>Guests</label>
+      <select>
+        <option>1–5 Guests</option>
+        <option>6–15 Guests</option>
+        <option>16–30 Guests</option>
+        <option>30+ Guests</option>
+      </select>
+    </div>
+  </div>
+  <button class="btn-main reveal">Confirm Reservation</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DHABA</div>
+  <div class="footer-sub">An Authentic Catering Experience · Dhaka · Chattogram</div>
+  <div class="footer-links">
+    <a href="#">Menu</a>
+    <a href="#">Catering</a>
+    <a href="#">Branches</a>
+    <a href="#">Gallery</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Dhaba Restaurant · All Rights Reserved</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => io.observe(r));
+</script>
+</body>
+</html>
